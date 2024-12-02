@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'task_manager.tasks',
+    'task_manager.users',
+    'task_manager.statuses',
+    'task_manager.labels',
+    'django_bootstrap5',
+    'django_filters',
+
 ]
 
 MIDDLEWARE = [
@@ -55,7 +62,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',
+            BASE_DIR / 'task_manager/templates',
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,3 +132,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+
+AUTH_USER_MODEL = 'users.Users'
