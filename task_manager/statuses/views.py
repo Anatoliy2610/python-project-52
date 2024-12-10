@@ -6,7 +6,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib import messages
+from task_manager.utils import MixinDeleteStatus
 
 
 class StatusesHome(LoginRequiredMixin, SuccessMessageMixin, ListView):
@@ -38,6 +39,7 @@ class StatusesUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Statuses
     template_name = 'actions/create_or_update.html'
     success_url = reverse_lazy('statuses')
+    success_message = ('Статус успешно изменен')
     pk_url_kwarg = 'status_id'
     extra_context = {
         'title': 'Изменение статуса',
@@ -45,12 +47,14 @@ class StatusesUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class StatusesDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class StatusesDelete(LoginRequiredMixin, SuccessMessageMixin, MixinDeleteStatus):
     model = Statuses
     template_name = 'actions/delete.html'
     success_url = reverse_lazy('statuses')
-    denied_url = reverse_lazy('statuses')
+    success_message = ('Статус успешно удален')
     pk_url_kwarg = 'status_id'
     extra_context = {
         'title': 'Удаление статуса'
     }
+    messages_for_error = 'Невозможно удалить статус, потому что он используется'
+    redirect_for_error = 'statuses'

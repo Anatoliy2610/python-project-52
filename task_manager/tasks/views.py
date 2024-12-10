@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django_filters.views import FilterView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
+from task_manager.utils import MixinDeleteTask
 
 
 class TaskHome(LoginRequiredMixin, SuccessMessageMixin, FilterView, ListView):
@@ -15,7 +17,8 @@ class TaskHome(LoginRequiredMixin, SuccessMessageMixin, FilterView, ListView):
     filterset_class = FilterTasks
     allow_empty = False
     extra_context = {
-        'title': 'Задачи'
+        'title': 'Задачи',
+        'button_text': 'Показать',
     }
 
     def get_queryset(self):
@@ -55,23 +58,21 @@ class TaskUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'actions/create_or_update.html'
     success_url = reverse_lazy('tasks')
     pk_url_kwarg = 'task_id'
+    success_message = ('Задача успешно изменена')
     extra_context = {
         'title': 'Изменение задачи',
         'button_text': 'Изменить',
     }
 
 
-class TaskDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class TaskDelete(LoginRequiredMixin, SuccessMessageMixin, MixinDeleteTask):
     model = Tasks
     template_name = 'actions/delete.html'
     success_url = reverse_lazy('tasks')
     pk_url_kwarg = 'task_id'
+    success_message = ('Задача успешно удалена')
     extra_context = {
         'title': 'Удаление задачи'
     }
-    context_object_name = 'task'
-    # def form_valid(self, form):
-    #     if self.get_object
-    #     return super().form_valid(form)
-
-
+    messages_for_error = 'Задачу может удалить только ее автор'
+    redirect_for_error = 'tasks'

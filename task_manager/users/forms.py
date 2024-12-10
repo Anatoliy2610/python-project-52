@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import Users
+from django.contrib.auth.forms import UserCreationForm
 
 
 
@@ -13,7 +12,6 @@ class LoginUserForm(AuthenticationForm):
     class Meta:
         model = get_user_model()
         fields = ['username', 'password']
-
 
 
 class RegisterUserForm(UserCreationForm):
@@ -43,7 +41,7 @@ class RegisterUserForm(UserCreationForm):
         }))
     
     class Meta:
-        model = Users
+        model = get_user_model()
         fields = [
             'first_name', 'last_name', 'username', 'password1', 'password2']
 
@@ -52,35 +50,16 @@ class RegisterUserForm(UserCreationForm):
         if get_user_model().objects.filter(username=username).exists():
             raise forms.ValidationError('Имя пользователя уже существует')
         return username
+    
 
-
-class UsersChangeForm(UserChangeForm):
-    first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={
-        'class': 'form-control', 
-        'placeholder': 'Имя'
-        }))
-    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={
-        'class': 'form-control', 
-        'placeholder': 'Фамилия'
-        }))
-    username = forms.CharField(label='Имя пользователя', 
-                               help_text='Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_.',
-                                widget=forms.TextInput(attrs={
-        'class': 'form-control', 
-        'placeholder': 'Имя пользователя'
-        }))
-    password1 = forms.CharField(label='Пароль', strip=False, 
-                               widget=forms.PasswordInput(attrs={
-        'class': 'form-control', 
-        'placeholder': 'Пароль'
-        }))
-    password2 = forms.CharField(label='Подтверждение пароля',
-                               widget=forms.PasswordInput(attrs={
-        'class': 'form-control', 
-        'placeholder': 'Подтверждение пароля'
-        }))
-    password = None
+class UsersChangeForm(RegisterUserForm):
     class Meta:
-        model = Users()
-        fields = ["first_name", 'last_name', 'username', 'password1', 'password2', ]
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'username']
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if get_user_model().objects.filter(username=username).exists() and username != self.instance.username:
+            raise forms.ValidationError('Имя пользователя уже существует')
+        return username
 

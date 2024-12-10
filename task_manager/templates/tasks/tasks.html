@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
 
 {% block content %}
 
@@ -6,16 +8,16 @@
 
   <h1 class="my-4">{{ title }}</h1>
         
-  <a class="btn btn-primary mb-3" href="/tasks/create/" role="button">Создать задачу</a>
+  <a class="btn btn-primary mb-3" href="{% url 'create_task' %}" role="button">Создать задачу</a>
   
 
 <div class="card mb-3 my-4">
   <div class="card-body bg-light">
-  <form method="get">
-    {{ filter.form.as_p }}
-    <input class="btn btn-primary" type="submit" value="Показать">
-  </form>
-</div>
+    <form class="form-inline center" method="get">
+      {% bootstrap_form filter.form field_class="ml-2 mr-3" %}
+      {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
+    </form>
+  </div>
 </div>
 
 

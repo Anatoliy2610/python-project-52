@@ -7,5 +7,6 @@ urlpatterns = [
     path('create/', views.LabelsCreate.as_view(), name='labels_create'),
     path('<int:label_id>/update/', views.LabelsUpdate.as_view(), name='labels_update'),
     path('<int:label_id>/delete/', views.LabelsDelete.as_view(), name='labels_delete'),
+    # path('<int:label_id>/delete/', views.label_delete, name='labels_delete'),
     
 ]
