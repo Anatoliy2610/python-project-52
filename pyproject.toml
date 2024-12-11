@@ -15,6 +15,7 @@ gunicorn = "^23.0.0"
 dj-database-url = "^2.3.0"
 flake8 = "^7.1.1"
 isort = "^5.13.2"
+rollbar = "^1.1.0"
 
 
 [build-system]
