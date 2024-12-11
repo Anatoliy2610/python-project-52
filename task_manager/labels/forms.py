@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import Labels
 
 
@@ -14,4 +15,4 @@ class CreateUpdateLabelForm(forms.ModelForm):
         label_name = self.cleaned_data['label_name']
         if Labels.objects.filter(label_name=label_name):
             raise forms.ValidationError('Label с таким Имя уже существует.')
-        return label_name   
+        return label_name

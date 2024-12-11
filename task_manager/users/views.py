@@ -1,11 +1,11 @@
-from django.shortcuts import render
-from task_manager.users.models import Users
-from task_manager.users.forms import RegisterUserForm, UsersChangeForm
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
+from task_manager.users.forms import RegisterUserForm, UsersChangeForm
+from task_manager.users.models import Users
 from task_manager.utils import MixinDeleteUser, MixinUpdateUser
 
 
@@ -54,5 +54,3 @@ class UserDelete(LoginRequiredMixin, SuccessMessageMixin, MixinDeleteUser):
     messages_for_error_get = 'Невозможно удалить пользователя, потому что он используется'
     messages_for_error_post = 'У вас нет прав для изменения другого пользователя.'
     redirect_for_error = 'home'
-
-

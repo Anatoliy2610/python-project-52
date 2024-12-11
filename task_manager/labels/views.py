@@ -1,18 +1,15 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Labels
-from .forms import CreateUpdateLabelForm
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import DeletionMixin
-from django.db.models import ProtectedError
-from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView
 from task_manager.utils import MixinDeleteLabel
+from .forms import CreateUpdateLabelForm
+from .models import Labels
 
 
-class LabelsHome(LoginRequiredMixin, SuccessMessageMixin, ListView):
+class LabelsHome(LoginRequiredMixin,
+                 SuccessMessageMixin,
+                 ListView):
     model = Labels
     template_name = 'labels/labels.html'
     context_object_name = 'labels'
@@ -24,7 +21,9 @@ class LabelsHome(LoginRequiredMixin, SuccessMessageMixin, ListView):
         return Labels.objects.all()
 
 
-class LabelsCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class LabelsCreate(LoginRequiredMixin,
+                   SuccessMessageMixin,
+                   CreateView):
     form_class = CreateUpdateLabelForm
     model = Labels
     template_name = 'actions/create_or_update.html'
@@ -36,7 +35,9 @@ class LabelsCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     }
 
 
-class LabelsUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class LabelsUpdate(LoginRequiredMixin,
+                   SuccessMessageMixin,
+                   UpdateView):
     form_class = CreateUpdateLabelForm
     model = Labels
     template_name = 'actions/create_or_update.html'
@@ -49,8 +50,9 @@ class LabelsUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = ('Метка успешно изменена')
 
 
-
-class LabelsDelete(LoginRequiredMixin, SuccessMessageMixin,  MixinDeleteLabel):
+class LabelsDelete(LoginRequiredMixin,
+                   SuccessMessageMixin,
+                   MixinDeleteLabel):
     model = Labels
     template_name = 'actions/delete.html'
     pk_url_kwarg = 'label_id'
@@ -63,6 +65,3 @@ class LabelsDelete(LoginRequiredMixin, SuccessMessageMixin,  MixinDeleteLabel):
     success_message = ('Метка успешно удалена')
     messages_for_error = 'Невозможно удалить метку, потому что он используется'
     redirect_for_error = 'labels'
-
-
-

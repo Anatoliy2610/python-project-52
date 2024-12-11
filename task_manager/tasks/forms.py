@@ -11,15 +11,11 @@ class CreateUpdateTaskForm(forms.ModelForm):
             'description',
             'status',
             'executor',
-            'labels',
-            ]
-        widgets = {
-            'task_name': forms.TextInput(attrs={'class': 'form-input'}),
-            'task_name': forms.TextInput(attrs={'class': 'form-label'}),
-            'task_name': forms.TextInput(attrs={'class': 'mb-3'})}
-    
+            'labels',]
+
     def clean_task_name(self):
         task_name = self.cleaned_data['task_name']
         if Tasks.objects.filter(task_name=task_name):
-            raise forms.ValidationError('Task с таким Имя уже существует.')
-        return task_name 
+            raise forms.ValidationError(
+                'Task с таким Имя уже существует.')
+        return task_name

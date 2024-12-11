@@ -1,17 +1,18 @@
-from django.shortcuts import render, redirect
-from .models import Tasks
-from .forms import CreateUpdateTaskForm
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from task_manager.utils import FilterTasks
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django_filters.views import FilterView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
-from task_manager.utils import MixinDeleteTask
+from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DetailView,
+                                  ListView, UpdateView)
+from django_filters.views import FilterView
+from task_manager.utils import FilterTasks, MixinDeleteTask
+from .forms import CreateUpdateTaskForm
+from .models import Tasks
 
 
-class TaskHome(LoginRequiredMixin, SuccessMessageMixin, FilterView, ListView):
+class TaskHome(LoginRequiredMixin,
+               SuccessMessageMixin,
+               FilterView,
+               ListView):
     template_name = 'tasks/tasks.html'
     context_object_name = 'tasks1'
     filterset_class = FilterTasks
@@ -23,9 +24,11 @@ class TaskHome(LoginRequiredMixin, SuccessMessageMixin, FilterView, ListView):
 
     def get_queryset(self):
         return Tasks.objects.all()
-    
 
-class TaskCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+
+class TaskCreate(LoginRequiredMixin,
+                 SuccessMessageMixin,
+                 CreateView):
     form_class = CreateUpdateTaskForm
     model = Tasks
     template_name = 'actions/create_or_update.html'
@@ -42,7 +45,9 @@ class TaskCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class Task(LoginRequiredMixin, SuccessMessageMixin, DetailView):
+class Task(LoginRequiredMixin,
+           SuccessMessageMixin,
+           DetailView):
     model = Tasks
     template_name = 'tasks/task.html'
     fields = ['task_name', 'description', 'status', 'executor', 'labels']
@@ -52,7 +57,10 @@ class Task(LoginRequiredMixin, SuccessMessageMixin, DetailView):
         'title': 'Просмотр задачи',
     }
 
-class TaskUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+
+class TaskUpdate(LoginRequiredMixin,
+                 SuccessMessageMixin,
+                 UpdateView):
     form_class = CreateUpdateTaskForm
     model = Tasks
     template_name = 'actions/create_or_update.html'
@@ -65,7 +73,9 @@ class TaskUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class TaskDelete(LoginRequiredMixin, SuccessMessageMixin, MixinDeleteTask):
+class TaskDelete(LoginRequiredMixin,
+                 SuccessMessageMixin,
+                 MixinDeleteTask):
     model = Tasks
     template_name = 'actions/delete.html'
     success_url = reverse_lazy('tasks')

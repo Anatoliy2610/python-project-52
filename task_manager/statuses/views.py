@@ -1,16 +1,15 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Statuses
-from .forms import CreateUpdateStatusForm
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView
 from task_manager.utils import MixinDeleteStatus
+from .forms import CreateUpdateStatusForm
+from .models import Statuses
 
 
-class StatusesHome(LoginRequiredMixin, SuccessMessageMixin, ListView):
+class StatusesHome(LoginRequiredMixin,
+                   SuccessMessageMixin,
+                   ListView):
     model = Statuses
     template_name = 'statuses/statuses.html'
     context_object_name = 'statuses'
@@ -20,9 +19,11 @@ class StatusesHome(LoginRequiredMixin, SuccessMessageMixin, ListView):
 
     def get_queryset(self):
         return Statuses.objects.all()
-    
 
-class StatusesCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+
+class StatusesCreate(LoginRequiredMixin,
+                     SuccessMessageMixin,
+                     CreateView):
     form_class = CreateUpdateStatusForm
     model = Statuses
     template_name = 'actions/create_or_update.html'
@@ -34,7 +35,9 @@ class StatusesCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     }
 
 
-class StatusesUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class StatusesUpdate(LoginRequiredMixin,
+                     SuccessMessageMixin,
+                     UpdateView):
     form_class = CreateUpdateStatusForm
     model = Statuses
     template_name = 'actions/create_or_update.html'
@@ -47,7 +50,9 @@ class StatusesUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class StatusesDelete(LoginRequiredMixin, SuccessMessageMixin, MixinDeleteStatus):
+class StatusesDelete(LoginRequiredMixin,
+                     SuccessMessageMixin,
+                     MixinDeleteStatus):
     model = Statuses
     template_name = 'actions/delete.html'
     success_url = reverse_lazy('statuses')
