@@ -1,7 +1,7 @@
 PORT ?= 8000
 
 install:
-	poetry install
+	poetry install -n -v --no-root
 
 run:
 	poetry run python manage.py runserver

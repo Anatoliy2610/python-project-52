@@ -620,6 +620,20 @@ socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
+name = "wheel"
+version = "0.45.1"
+description = "A built-package format for Python"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "wheel-0.45.1-py3-none-any.whl", hash = "sha256:708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248"},
+    {file = "wheel-0.45.1.tar.gz", hash = "sha256:661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729"},
+]
+
+[package.extras]
+test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
+
+[[package]]
 name = "xlwt"
 version = "1.3.0"
 description = "Library to create spreadsheet files compatible with MS Excel 97/2000/XP/2003 XLS files, on any platform, with Python 2.6, 2.7, 3.3+"
@@ -633,4 +647,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "93f241e87888c07c71696f3621b7ce9d170e62ca88cd292b726be95b8d85694e"
+content-hash = "98547b7a3df164bffcda288f87f6fe877ea0b53a928605aa9abf38bd8996eff5"
