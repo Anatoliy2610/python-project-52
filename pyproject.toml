@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Anatoliy"]
 readme = "README.md"
+packages = [{include = "task_manager"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -16,6 +17,7 @@ dj-database-url = "^2.3.0"
 flake8 = "^7.1.1"
 isort = "^5.13.2"
 rollbar = "^1.1.0"
+psycopg2-binary = "^2.9.10"
 
 
 [build-system]
