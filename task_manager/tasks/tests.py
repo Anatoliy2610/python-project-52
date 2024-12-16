@@ -41,7 +41,8 @@ class TestTasks(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse('create_task'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, template_name='actions/create_or_update.html')
+        self.assertTemplateUsed(response,
+                                template_name='actions/create_or_update.html')
 
         response = self.client.post(reverse('create_task'), {
             'task_name': 'task3',
@@ -73,7 +74,10 @@ class TestTasks(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('tasks'))
         task.refresh_from_db()
-        self.assertEqual([task.task_name, task.description], ['task111', 'd111'])
+        self.assertEqual([
+            task.task_name,
+            task.description],
+            ['task111', 'd111'])
 
     def test_task_delete(self):
         self.client.force_login(self.user)

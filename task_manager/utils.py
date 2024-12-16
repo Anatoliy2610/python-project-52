@@ -1,13 +1,14 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import CheckboxInput
 from django.shortcuts import redirect
 from django.views.generic import DeleteView, UpdateView
 from django_filters import BooleanFilter, FilterSet, ModelChoiceFilter
+
 from task_manager.labels.models import Labels
 from task_manager.statuses.models import Statuses
 from task_manager.tasks.models import Tasks
 from task_manager.users.models import Users
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class FilterTasks(FilterSet):

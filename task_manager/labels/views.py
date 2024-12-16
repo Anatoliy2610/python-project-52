@@ -1,7 +1,9 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView
+
 from task_manager.utils import MixinDeleteLabel, MixinLoginRequired
+
 from .forms import CreateUpdateLabelForm
 from .models import Labels
 

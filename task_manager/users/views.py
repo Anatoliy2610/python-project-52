@@ -2,10 +2,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+
 from task_manager.users.forms import RegisterUserForm, UsersChangeForm
 from task_manager.users.models import Users
-from task_manager.utils import MixinDeleteUser, MixinUpdateUser, MixinLoginRequired
-from django.contrib import messages
+from task_manager.utils import (MixinDeleteUser, MixinLoginRequired,
+                                MixinUpdateUser)
+
 
 def users(request):
     user = Users.objects.all()
@@ -54,6 +56,8 @@ class UserDelete(MixinLoginRequired,
         'title': 'Удаление пользователя',
         'button_text': 'Удалить',
     }
-    messages_for_error_get = 'Невозможно удалить пользователя, потому что он используется'
-    messages_for_error_post = 'У вас нет прав для изменения другого пользователя.'
+    messages_for_error_get = '''Невозможно удалить пользователя,
+    потому что он используется'''
+    messages_for_error_post = '''У вас нет прав для
+    изменения другого пользователя.'''
     redirect_for_error = 'users'

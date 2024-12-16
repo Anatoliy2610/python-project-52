@@ -25,7 +25,8 @@ class TestUsers(TestCase):
     def test_users_create(self):
         response = self.client.get(reverse('users_create'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, template_name='actions/create_or_update.html')
+        self.assertTemplateUsed(response,
+                                template_name='actions/create_or_update.html')
 
         response = self.client.post(reverse('users_create'), {
             'first_name': 'N3',
@@ -58,7 +59,8 @@ class TestUsers(TestCase):
         response = self.client.get(reverse('users_update',
                                    kwargs={'user_id': user.id}))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, template_name='actions/create_or_update.html')
+        self.assertTemplateUsed(response,
+                                template_name='actions/create_or_update.html')
         response = self.client.post(reverse('users_update',
                                     kwargs={'user_id': user.id}), {
             'first_name': 'T222',

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+
 from task_manager.labels.models import Labels
 from task_manager.statuses.models import Statuses
 from task_manager.users.models import Users
