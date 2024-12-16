@@ -28,9 +28,9 @@
           <td>{{ us.first_name }} {{ us.last_name }}</td>
           <td>{{ us.time_create|date:"d.m.Y H:i" }}</td>
           <td>
-            <a href="{% url 'users:update' us.pk %}">Изменить</a>
+            <a href="{% url 'users_update' us.pk %}">Изменить</a>
             <br>
-            <a href="{% url 'users:delete' us.pk %}">Удалить</a>
+            <a href="{% url 'users_delete' us.pk %}">Удалить</a>
           </td>
         </tr>
       {% endfor %}

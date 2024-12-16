@@ -1,15 +1,14 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DetailView,
                                   ListView, UpdateView)
 from django_filters.views import FilterView
-from task_manager.utils import FilterTasks, MixinDeleteTask
+from task_manager.utils import FilterTasks, MixinDeleteTask, MixinLoginRequired
 from .forms import CreateUpdateTaskForm
 from .models import Tasks
 
 
-class TaskHome(LoginRequiredMixin,
+class TaskHome(MixinLoginRequired,
                SuccessMessageMixin,
                FilterView,
                ListView):
@@ -26,7 +25,7 @@ class TaskHome(LoginRequiredMixin,
         return Tasks.objects.all()
 
 
-class TaskCreate(LoginRequiredMixin,
+class TaskCreate(MixinLoginRequired,
                  SuccessMessageMixin,
                  CreateView):
     form_class = CreateUpdateTaskForm
@@ -45,7 +44,7 @@ class TaskCreate(LoginRequiredMixin,
         return super().form_valid(form)
 
 
-class Task(LoginRequiredMixin,
+class Task(MixinLoginRequired,
            SuccessMessageMixin,
            DetailView):
     model = Tasks
@@ -58,7 +57,7 @@ class Task(LoginRequiredMixin,
     }
 
 
-class TaskUpdate(LoginRequiredMixin,
+class TaskUpdate(MixinLoginRequired,
                  SuccessMessageMixin,
                  UpdateView):
     form_class = CreateUpdateTaskForm
@@ -73,7 +72,7 @@ class TaskUpdate(LoginRequiredMixin,
     }
 
 
-class TaskDelete(LoginRequiredMixin,
+class TaskDelete(MixinLoginRequired,
                  SuccessMessageMixin,
                  MixinDeleteTask):
     model = Tasks

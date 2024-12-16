@@ -1,13 +1,12 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView
-from task_manager.utils import MixinDeleteStatus
+from task_manager.utils import MixinDeleteStatus, MixinLoginRequired
 from .forms import CreateUpdateStatusForm
 from .models import Statuses
 
 
-class StatusesHome(LoginRequiredMixin,
+class StatusesHome(MixinLoginRequired,
                    SuccessMessageMixin,
                    ListView):
     model = Statuses
@@ -21,7 +20,7 @@ class StatusesHome(LoginRequiredMixin,
         return Statuses.objects.all()
 
 
-class StatusesCreate(LoginRequiredMixin,
+class StatusesCreate(MixinLoginRequired,
                      SuccessMessageMixin,
                      CreateView):
     form_class = CreateUpdateStatusForm
@@ -35,7 +34,7 @@ class StatusesCreate(LoginRequiredMixin,
     }
 
 
-class StatusesUpdate(LoginRequiredMixin,
+class StatusesUpdate(MixinLoginRequired,
                      SuccessMessageMixin,
                      UpdateView):
     form_class = CreateUpdateStatusForm
@@ -50,7 +49,7 @@ class StatusesUpdate(LoginRequiredMixin,
     }
 
 
-class StatusesDelete(LoginRequiredMixin,
+class StatusesDelete(MixinLoginRequired,
                      SuccessMessageMixin,
                      MixinDeleteStatus):
     model = Statuses

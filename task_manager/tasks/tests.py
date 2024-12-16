@@ -35,7 +35,7 @@ class TestTasks(TestCase):
     def test_task_list(self):
         self.client.force_login(self.user)
         response = self.client.get(reverse('tasks'))
-        # self.assertTrue(len(response.context['tasks']), 2)
+        self.assertTrue(len(response.context['tasks1']), 2)
 
     def test_task_create(self):
         self.client.force_login(self.user)
@@ -54,7 +54,7 @@ class TestTasks(TestCase):
         self.assertRedirects(response, reverse('tasks'))
 
         response = self.client.get(reverse('tasks'))
-        # self.assertTrue(len(response.context['tasks']), 3)
+        self.assertTrue(len(response.context['tasks1']), 3)
 
     def test_task_update(self):
         self.client.force_login(self.user)

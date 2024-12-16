@@ -1,13 +1,12 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView
-from task_manager.utils import MixinDeleteLabel
+from task_manager.utils import MixinDeleteLabel, MixinLoginRequired
 from .forms import CreateUpdateLabelForm
 from .models import Labels
 
 
-class LabelsHome(LoginRequiredMixin,
+class LabelsHome(MixinLoginRequired,
                  SuccessMessageMixin,
                  ListView):
     model = Labels
@@ -21,7 +20,7 @@ class LabelsHome(LoginRequiredMixin,
         return Labels.objects.all()
 
 
-class LabelsCreate(LoginRequiredMixin,
+class LabelsCreate(MixinLoginRequired,
                    SuccessMessageMixin,
                    CreateView):
     form_class = CreateUpdateLabelForm
@@ -35,7 +34,7 @@ class LabelsCreate(LoginRequiredMixin,
     }
 
 
-class LabelsUpdate(LoginRequiredMixin,
+class LabelsUpdate(MixinLoginRequired,
                    SuccessMessageMixin,
                    UpdateView):
     form_class = CreateUpdateLabelForm
@@ -50,7 +49,7 @@ class LabelsUpdate(LoginRequiredMixin,
     success_message = ('Метка успешно изменена')
 
 
-class LabelsDelete(LoginRequiredMixin,
+class LabelsDelete(MixinLoginRequired,
                    SuccessMessageMixin,
                    MixinDeleteLabel):
     model = Labels

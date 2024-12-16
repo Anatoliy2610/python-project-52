@@ -7,6 +7,7 @@ from task_manager.labels.models import Labels
 from task_manager.statuses.models import Statuses
 from task_manager.tasks.models import Tasks
 from task_manager.users.models import Users
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class FilterTasks(FilterSet):
@@ -101,3 +102,12 @@ class MixinUpdateUser(UpdateView):
                            )
             return redirect(self.redirect_for_error)
         return super().get(request, *args, **kwargs)
+
+
+class MixinLoginRequired(LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(self.request,
+                           ('Вы не авторизованы! Пожалуйста, выполните вход.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
