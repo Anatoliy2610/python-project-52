@@ -178,21 +178,6 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django-admin"
-version = "2.0.2"
-description = "Django Admin Extensions"
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-admin-2.0.2.tar.gz", hash = "sha256:43c9f94ca5ad498789c0282691931c609c8e26db61aeb49ae8ad90d15b80cb75"},
-    {file = "django_admin-2.0.2-py2.py3-none-any.whl", hash = "sha256:a92f9fb21f63edabb5db9030f36b62c6c16a0187183e7e7de4142aee4472b70f"},
-]
-
-[package.dependencies]
-django-excel-response2 = ">=3.0.0"
-django-six = "*"
-
-[[package]]
 name = "django-bootstrap5"
 version = "24.3"
 description = "Bootstrap 5 for Django"
@@ -210,21 +195,6 @@ Django = ">=4.2"
 jinja = ["Jinja2 (>=3.0,<4)"]
 
 [[package]]
-name = "django-excel-response2"
-version = "3.0.6"
-description = "A function extends of Tarken's django-excel-response"
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-excel-response2-3.0.6.tar.gz", hash = "sha256:404b28818a262153559155239b719ba50e3c09484d638acdaadadfb309fc1b56"},
-    {file = "django_excel_response2-3.0.6-py2.py3-none-any.whl", hash = "sha256:fe0c54207caf7efefcad689427bffad9209808e6102becb07967d5f8c92b82c7"},
-]
-
-[package.dependencies]
-django-six = ">=1.0.4"
-excel-base = ">=1.0.3"
-
-[[package]]
 name = "django-filter"
 version = "24.3"
 description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
@@ -237,33 +207,6 @@ files = [
 
 [package.dependencies]
 Django = ">=4.2"
-
-[[package]]
-name = "django-six"
-version = "1.0.5"
-description = "Django-six —— Django Compatibility Library"
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-six-1.0.5.tar.gz", hash = "sha256:9ad505d101ac3ce5a59d22693fcf77b4b19764020e0c7edfe939d220cafbf3a9"},
-    {file = "django_six-1.0.5-py2.py3-none-any.whl", hash = "sha256:50816cf52e16814dff58eacd4883d9e5a43be37e53dcbd99323d1139ff89f73b"},
-]
-
-[[package]]
-name = "excel-base"
-version = "1.0.4"
-description = "Excel Base"
-optional = false
-python-versions = "*"
-files = [
-    {file = "excel-base-1.0.4.tar.gz", hash = "sha256:5b3f2ead44a1b35ed3099e127fc3de9d6eb453bba9acc1058af215e21b4ee20c"},
-    {file = "excel_base-1.0.4-py2.py3-none-any.whl", hash = "sha256:3cdd3ef3366422eda12c7a72157053c8cbd06bcfe63a9280bc443ed21186372f"},
-]
-
-[package.dependencies]
-screen = "*"
-TimeConvert = ">=1.5.3"
-xlwt = "*"
 
 [[package]]
 name = "flake8"
@@ -329,17 +272,6 @@ files = [
 
 [package.extras]
 colors = ["colorama (>=0.4.6)"]
-
-[[package]]
-name = "isoweek"
-version = "1.3.3"
-description = "Objects representing a week"
-optional = false
-python-versions = "*"
-files = [
-    {file = "isoweek-1.3.3-py2.py3-none-any.whl", hash = "sha256:d3324c497d97f1534669de225ec877964222e4cc773a4a99063086f7a4e342b6"},
-    {file = "isoweek-1.3.3.tar.gz", hash = "sha256:73f3f7bac443e05a3ab45c32a72048b0c4f26d53d81462ec4b142c7581d3ffe8"},
-]
 
 [[package]]
 name = "mccabe"
@@ -462,18 +394,18 @@ files = [
 ]
 
 [[package]]
-name = "python-dateutil"
-version = "2.9.0.post0"
-description = "Extensions to the standard Python datetime module"
+name = "python-dotenv"
+version = "1.0.1"
+description = "Read key-value pairs from a .env file and set them as environment variables"
 optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+python-versions = ">=3.8"
 files = [
-    {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
-    {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
+    {file = "python-dotenv-1.0.1.tar.gz", hash = "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca"},
+    {file = "python_dotenv-1.0.1-py3-none-any.whl", hash = "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"},
 ]
 
-[package.dependencies]
-six = ">=1.5"
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "requests"
@@ -511,28 +443,6 @@ files = [
 requests = ">=0.12.1"
 
 [[package]]
-name = "screen"
-version = "1.0.1"
-description = "Screen width and so on"
-optional = false
-python-versions = "*"
-files = [
-    {file = "screen-1.0.1-cp27-cp27m-macosx_10_9_intel.whl", hash = "sha256:29009e0306d005679cc43c8cd69856a046265433310c10e71920591de3c58fda"},
-    {file = "screen-1.0.1.tar.gz", hash = "sha256:aebfe90de7b8a646d4f3c2b214bd6ffa2ab12ed9d0b14c08620d9c7f7b8ee670"},
-]
-
-[[package]]
-name = "six"
-version = "1.17.0"
-description = "Python 2 and 3 compatibility utilities"
-optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
-files = [
-    {file = "six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"},
-    {file = "six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"},
-]
-
-[[package]]
 name = "sqlparse"
 version = "0.5.3"
 description = "A non-validating SQL parser."
@@ -546,22 +456,6 @@ files = [
 [package.extras]
 dev = ["build", "hatch"]
 doc = ["sphinx"]
-
-[[package]]
-name = "timeconvert"
-version = "3.0.13"
-description = "Time Convert for Humans™"
-optional = false
-python-versions = ">=3.5"
-files = [
-    {file = "TimeConvert-3.0.13-py2.py3-none-any.whl", hash = "sha256:9fa7f2eb43c17b8636171c98a8f599d9308b003395322f11cd4cdaba68cdc89a"},
-    {file = "TimeConvert-3.0.13.tar.gz", hash = "sha256:1f4ca99a7e88afe6e19d2d7578078555288055e362f0d170a1e35a8dadf38f03"},
-]
-
-[package.dependencies]
-isoweek = "*"
-python-dateutil = ">=2.8.1"
-tzlocal = "*"
 
 [[package]]
 name = "typing-extensions"
@@ -586,23 +480,6 @@ files = [
 ]
 
 [[package]]
-name = "tzlocal"
-version = "5.2"
-description = "tzinfo object for the local timezone"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "tzlocal-5.2-py3-none-any.whl", hash = "sha256:49816ef2fe65ea8ac19d19aa7a1ae0551c834303d5014c6d5a62e4cbda8047b8"},
-    {file = "tzlocal-5.2.tar.gz", hash = "sha256:8d399205578f1a9342816409cc1e46a93ebd5755e39ea2d85334bea911bf0e6e"},
-]
-
-[package.dependencies]
-tzdata = {version = "*", markers = "platform_system == \"Windows\""}
-
-[package.extras]
-devenv = ["check-manifest", "pytest (>=4.3)", "pytest-cov", "pytest-mock (>=3.3)", "zest.releaser"]
-
-[[package]]
 name = "urllib3"
 version = "2.2.3"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -619,32 +496,7 @@ h2 = ["h2 (>=4,<5)"]
 socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
-[[package]]
-name = "wheel"
-version = "0.45.1"
-description = "A built-package format for Python"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "wheel-0.45.1-py3-none-any.whl", hash = "sha256:708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248"},
-    {file = "wheel-0.45.1.tar.gz", hash = "sha256:661e1abd9198507b1409a20c02106d9670b2576e916d58f520316666abca6729"},
-]
-
-[package.extras]
-test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
-
-[[package]]
-name = "xlwt"
-version = "1.3.0"
-description = "Library to create spreadsheet files compatible with MS Excel 97/2000/XP/2003 XLS files, on any platform, with Python 2.6, 2.7, 3.3+"
-optional = false
-python-versions = "*"
-files = [
-    {file = "xlwt-1.3.0-py2.py3-none-any.whl", hash = "sha256:a082260524678ba48a297d922cc385f58278b8aa68741596a87de01a9c628b2e"},
-    {file = "xlwt-1.3.0.tar.gz", hash = "sha256:c59912717a9b28f1a3c2a98fd60741014b06b043936dcecbc113eaaada156c88"},
-]
-
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "b51e3a2536c31eeeec870d3ada7e545490d87984104dade8221d0d786eca9c55"
+content-hash = "6b0828e42a831608b2281d6e88573397c51306ac38dffc74a599f5b71b9d959c"

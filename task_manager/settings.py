@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-8gr#!_^1ojt_2rx#$0^*#ktn4!^nohu@34s&dh!dx!x=r-qjc6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -141,7 +143,8 @@ LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'users.Users'
 
 ROLLBAR = {
-    'access_token': os.getenv('ACCRSS_TOKEN'),
+    # 'access_token': os.getenv('ACCRSS_TOKEN'),
+    'access_token': '67d3c2d00119448397646d058114a1b8',
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
