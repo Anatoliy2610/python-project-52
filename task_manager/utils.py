@@ -8,7 +8,7 @@ from django_filters import BooleanFilter, FilterSet, ModelChoiceFilter
 from task_manager.labels.models import Labels
 from task_manager.statuses.models import Statuses
 from task_manager.tasks.models import Tasks
-from task_manager.users.models import Users
+from task_manager.users.models import User
 
 
 class FilterTasks(FilterSet):
@@ -16,7 +16,7 @@ class FilterTasks(FilterSet):
                                label='Статус')
     labels = ModelChoiceFilter(queryset=Labels.objects.all(),
                                label='Метка')
-    executor = ModelChoiceFilter(queryset=Users.objects.all(),
+    executor = ModelChoiceFilter(queryset=User.objects.all(),
                                  label='Исполнитель')
     tasks_user = BooleanFilter(label='Только свои задачи',
                                widget=CheckboxInput,

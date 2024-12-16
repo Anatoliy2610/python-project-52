@@ -144,7 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
-AUTH_USER_MODEL = 'users.Users'
+AUTH_USER_MODEL = 'users.User'
 
 ROLLBAR = {
     'access_token': os.getenv('ACCRSS_TOKEN'),

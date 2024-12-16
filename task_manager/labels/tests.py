@@ -2,17 +2,17 @@ from django.test import TestCase
 from django.urls import reverse
 
 from task_manager.labels.models import Labels
-from task_manager.users.models import Users
+from task_manager.users.models import User
 
 
 class TestLabels(TestCase):
 
     def setUp(self):
-        Users.objects.create(
+        User.objects.create(
             first_name='T1',
             last_name='M1',
             username='TM1',)
-        self.user = Users.objects.get(id=1)
+        self.user = User.objects.get(id=1)
         Labels.objects.create(label_name='label1')
         Labels.objects.create(label_name='label2')
         Labels.objects.create(label_name='label3')

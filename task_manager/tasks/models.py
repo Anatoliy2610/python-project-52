@@ -3,7 +3,7 @@ from django.db import models
 
 from task_manager.labels.models import Labels
 from task_manager.statuses.models import Statuses
-from task_manager.users.models import Users
+from task_manager.users.models import User
 
 
 class Tasks(models.Model):
@@ -30,7 +30,7 @@ class Tasks(models.Model):
         null=True,
         related_name='author')
     executor = models.ForeignKey(
-        Users,
+        User,
         on_delete=models.PROTECT,
         null=True,
         verbose_name='Исполнитель',

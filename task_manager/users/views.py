@@ -4,20 +4,20 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from task_manager.users.forms import RegisterUserForm, UsersChangeForm
-from task_manager.users.models import Users
+from task_manager.users.models import User
 from task_manager.utils import (MixinDeleteUser, MixinLoginRequired,
                                 MixinUpdateUser)
 
 
 def users(request):
-    user = Users.objects.all()
+    user = User.objects.all()
     return render(request, 'users/users.html', context={'user': user})
 
 
 class UsersCreate(SuccessMessageMixin,
                   CreateView):
     form_class = RegisterUserForm
-    model = Users
+    model = User
     template_name = 'actions/create_or_update.html'
     success_message = ('Пользователь успешно создан')
     success_url = reverse_lazy('login')
@@ -31,7 +31,7 @@ class UsersUpdate(MixinLoginRequired,
                   SuccessMessageMixin,
                   MixinUpdateUser):
     form_class = UsersChangeForm
-    model = Users
+    model = User
     template_name = 'actions/create_or_update.html'
     success_url = reverse_lazy('users')
     pk_url_kwarg = 'user_id'
@@ -47,7 +47,7 @@ class UsersUpdate(MixinLoginRequired,
 class UserDelete(MixinLoginRequired,
                  SuccessMessageMixin,
                  MixinDeleteUser):
-    model = Users
+    model = User
     template_name = 'actions/delete.html'
     success_url = reverse_lazy('users')
     pk_url_kwarg = 'user_id'

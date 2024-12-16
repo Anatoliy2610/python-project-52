@@ -3,18 +3,18 @@ from django.urls import reverse
 
 from task_manager.statuses.models import Statuses
 from task_manager.tasks.models import Tasks
-from task_manager.users.models import Users
+from task_manager.users.models import User
 
 
 class TestTasks(TestCase):
 
     def setUp(self):
-        Users.objects.create(
+        User.objects.create(
             first_name='T1',
             last_name='M1',
             username='TM1',
         )
-        self.user = Users.objects.get(id=1)
+        self.user = User.objects.get(id=1)
         Statuses.objects.create(status_name='status1')
 
         Tasks.objects.create(
