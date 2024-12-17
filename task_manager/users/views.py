@@ -23,7 +23,7 @@ class UsersCreate(SuccessMessageMixin,
     success_url = reverse_lazy('login')
     extra_context = {
         'title': 'Регистрация',
-        'button_text': 'Создать',
+        'button_text': 'Зарегистрировать',
     }
 
 
