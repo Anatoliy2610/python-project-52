@@ -73,21 +73,21 @@ class MixinDeleteTask(DeleteView):
 
 
 class MixinDeleteUser(DeleteView):
-    messages_for_error_get = None
-    messages_for_error_post = None
+    flash_get = None
+    flash_post = None
     redirect_for_error = None
 
     def get(self, request, *args, **kwargs):
         if self.get_object().username != self.request.user.username:
             messages.error(self.request,
-                           (self.messages_for_error_get)
+                           (self.flash_get)
                            )
             return redirect(self.redirect_for_error)
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if Tasks.objects.filter(author=self.get_object().id):
-            messages.error(self.request, (self.messages_for_error_post))
+            messages.error(self.request, (self.flash_post))
             return redirect(self.redirect_for_error)
         return super().post(request, *args, **kwargs)
 
