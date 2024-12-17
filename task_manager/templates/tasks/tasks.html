@@ -40,7 +40,7 @@
           <td>
             <a href="{% url 'task' task.id %}">{{ task.task_name }}</a>
           </td>
-          <td>{{ task.status.status_name }}</td>
+          <td>{{ task.status.name }}</td>
           <td>{{ task.author.username }}</td>
           <td>{{ task.executor.username }}</td>
           <td>{{ task.time_create|date:"d.m.Y H:i" }}</td>

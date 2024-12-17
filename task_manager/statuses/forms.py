@@ -7,14 +7,14 @@ class CreateUpdateStatusForm(forms.ModelForm):
 
     class Meta:
         model = Statuses
-        fields = ['status_name']
+        fields = ['name']
         widgets = {'name': forms.TextInput(
             attrs={'placeholder': 'Имя',
                    'class': 'form-control'})}
 
     def clean_status_name(self):
-        status_name = self.cleaned_data['status_name']
-        if Statuses.objects.filter(status_name=status_name):
+        name = self.cleaned_data['name']
+        if Statuses.objects.filter(name=name):
             raise forms.ValidationError(
                 'Task status с таким Имя уже существует.')
-        return status_name
+        return name

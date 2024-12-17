@@ -15,7 +15,7 @@ class TestTasks(TestCase):
             username='TM1',
         )
         self.user = User.objects.get(id=1)
-        Statuses.objects.create(status_name='status1')
+        Statuses.objects.create(name='status1')
 
         Tasks.objects.create(
             task_name='task1',
