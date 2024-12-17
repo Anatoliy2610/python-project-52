@@ -18,7 +18,7 @@
     </thead>
   <tbody>
 
-
+{% if statuses %}
     {% for status in statuses %}
     <tr>
       <td>{{ status.pk }}</td>
@@ -31,6 +31,11 @@
       </td>
     </tr>
   {% endfor %}
+  {% else %}
+  <tr>
+    <td colspan="4">Статусы пока не добавлены</td>
+  </tr>
+  {% endif %}
   </tbody>
   </table>
 
@@ -38,6 +43,5 @@
 
 
 {% endblock %}
-
 
 
