@@ -1,7 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from task_manager.users.forms import RegisterUserForm, UsersChangeForm
 from task_manager.users.models import User
@@ -9,9 +8,10 @@ from task_manager.utils import (MixinDeleteUser, MixinLoginRequired,
                                 MixinUpdateUser)
 
 
-def users(request):
-    user = User.objects.all()
-    return render(request, 'users/users.html', context={'user': user})
+class UsersHome(ListView):
+    model = User
+    template_name = 'users/users.html'
+    context_object_name = 'user'
 
 
 class UsersCreate(SuccessMessageMixin,
