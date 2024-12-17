@@ -21,12 +21,13 @@
     </thead>
     <tbody>
 
+  
       {% for us in user %}
        <tr>
-          <td>{{ us.pk }}</td>
-          <td>{{ us.username }}</td>
-          <td>{{ us.first_name }} {{ us.last_name }}</td>
-          <td>{{ us.time_create|date:"d.m.Y H:i" }}</td>
+        <td>{{ us.pk }}</td>
+        <td>{{ us.username }}</td>
+        <td>{{ us.first_name }} {{ us.last_name }}</td>
+        <td>{{ us.time_create|date:"d.m.Y H:i" }}</td>
           <td>
             <a href="{% url 'users_update' us.pk %}">Изменить</a>
             <br>
@@ -34,6 +35,8 @@
           </td>
         </tr>
       {% endfor %}
+
+
 
       </tbody>
     </table>
