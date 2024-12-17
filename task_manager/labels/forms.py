@@ -7,12 +7,12 @@ class CreateUpdateLabelForm(forms.ModelForm):
 
     class Meta:
         model = Labels
-        fields = ['label_name']
+        fields = ['name']
         widgets = {'name': forms.TextInput(attrs={'placeholder': 'Имя',
                                                   'class': 'form-control'})}
 
     def clean_label_name(self):
-        label_name = self.cleaned_data['label_name']
-        if Labels.objects.filter(label_name=label_name):
+        name = self.cleaned_data['name']
+        if Labels.objects.filter(name=name):
             raise forms.ValidationError('Label с таким Имя уже существует.')
-        return label_name
+        return name

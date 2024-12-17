@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Labels(models.Model):
-    label_name = models.CharField(max_length=255, verbose_name='Имя')
+    name = models.CharField(max_length=255, verbose_name='Имя')
     time_create = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата создания')
 
     def __str__(self):
-        return self.label_name
+        return self.name

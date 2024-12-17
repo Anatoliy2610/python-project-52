@@ -13,9 +13,9 @@ class TestLabels(TestCase):
             last_name='M1',
             username='TM1',)
         self.user = User.objects.get(id=1)
-        Labels.objects.create(label_name='label1')
-        Labels.objects.create(label_name='label2')
-        Labels.objects.create(label_name='label3')
+        Labels.objects.create(name='label1')
+        Labels.objects.create(name='label2')
+        Labels.objects.create(name='label3')
 
     def test_label_list(self):
         self.client.force_login(self.user)
@@ -25,7 +25,7 @@ class TestLabels(TestCase):
     def test_label_create(self):
         self.client.force_login(self.user)
         response = self.client.post(reverse('labels_create'),
-                                    {'label_name': 'label4'})
+                                    {'name': 'label4'})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels'))
 
@@ -37,10 +37,10 @@ class TestLabels(TestCase):
         label = Labels.objects.get(id=1)
         response = self.client.post(reverse('labels_update',
                                     kwargs={'label_id': 1}),
-                                    {'label_name': 'label111'})
+                                    {'name': 'label111'})
         self.assertEqual(response.status_code, 302)
         label.refresh_from_db()
-        self.assertEqual(label.label_name, 'label111')
+        self.assertEqual(label.name, 'label111')
 
     def test_label_delete(self):
         self.client.force_login(self.user)
@@ -50,5 +50,5 @@ class TestLabels(TestCase):
         self.assertRedirects(response, reverse('labels'))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Labels.objects.count(), 2)
-        self.assertEqual(Labels.objects.get(pk=1).label_name, 'label1')
-        self.assertEqual(Labels.objects.get(pk=2).label_name, 'label2')
+        self.assertEqual(Labels.objects.get(pk=1).name, 'label1')
+        self.assertEqual(Labels.objects.get(pk=2).name, 'label2')
