@@ -56,6 +56,6 @@ class UserDelete(MixinLoginRequired,
         'title': 'Удаление пользователя',
         'button_text': 'Удалить',
     }
-    messages_for_error_get = 'Невозможно удалить пользователя, потому что он используется'
-    messages_for_error_post = 'У вас нет прав для изменения другого пользователя.'
+    messages_for_error_get = 'У вас нет прав для изменения другого пользователя.'
+    messages_for_error_post = 'Невозможно удалить пользователя, потому что он используется'
     redirect_for_error = 'users'
