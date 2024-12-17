@@ -7,7 +7,7 @@ from task_manager.users.models import User
 
 
 class Tasks(models.Model):
-    task_name = models.CharField(
+    name = models.CharField(
         max_length=255,
         verbose_name='Имя')
     time_create = models.DateTimeField(
@@ -42,4 +42,4 @@ class Tasks(models.Model):
         related_name='labels')
 
     def __str__(self):
-        return self.task_name
+        return self.name

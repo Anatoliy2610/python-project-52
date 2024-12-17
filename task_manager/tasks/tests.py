@@ -18,14 +18,14 @@ class TestTasks(TestCase):
         Statuses.objects.create(name='status1')
 
         Tasks.objects.create(
-            task_name='task1',
+            name='task1',
             description='d1',
             status_id=1,
             author_id=1,
             executor_id=1,
         )
         Tasks.objects.create(
-            task_name='task2',
+            name='task2',
             description='d2',
             status_id=1,
             author_id=1,
@@ -45,7 +45,7 @@ class TestTasks(TestCase):
                                 template_name='actions/create_or_update.html')
 
         response = self.client.post(reverse('create_task'), {
-            'task_name': 'task3',
+            'name': 'task3',
             'description': 'd3',
             'status': 1,
             'author': 1,
@@ -64,7 +64,7 @@ class TestTasks(TestCase):
         response = self.client.post(
             reverse('task_update', kwargs={'task_id': task.id}),
             {
-                'task_name': 'task111',
+                'name': 'task111',
                 'description': 'd111',
                 'status': 1,
                 'author': 1,
@@ -75,7 +75,7 @@ class TestTasks(TestCase):
         self.assertRedirects(response, reverse('tasks'))
         task.refresh_from_db()
         self.assertEqual([
-            task.task_name,
+            task.name,
             task.description],
             ['task111', 'd111'])
 
@@ -86,4 +86,4 @@ class TestTasks(TestCase):
         self.assertRedirects(response, reverse('tasks'))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Tasks.objects.count(), 1)
-        self.assertEqual(Tasks.objects.get(pk=1).task_name, 'task1')
+        self.assertEqual(Tasks.objects.get(pk=1).name, 'task1')

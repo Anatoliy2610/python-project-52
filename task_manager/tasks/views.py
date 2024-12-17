@@ -50,7 +50,7 @@ class Task(MixinLoginRequired,
            DetailView):
     model = Tasks
     template_name = 'tasks/task.html'
-    fields = ['task_name', 'description', 'status', 'executor', 'labels']
+    fields = ['name', 'description', 'status', 'executor', 'labels']
     context_object_name = 'task'
     pk_url_kwarg = 'task_id'
     extra_context = {

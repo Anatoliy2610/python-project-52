@@ -6,5 +6,5 @@ from .models import Tasks
 @admin.register(Tasks)
 class UserAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'task_name', 'status', 'executor', 'time_create',)
-    list_display_links = ('id', 'task_name', )
+    list_display = ('id', 'name', 'status', 'executor', 'time_create',)
+    list_display_links = ('id', 'name', )
