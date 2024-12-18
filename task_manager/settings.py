@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECRET_KEY = 'django-insecure-8gr#!_^1ojt_2rx#$0^*#ktn4!^nohu@34s&dh!dx!x=r-qjc6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = [
     "webserver",
@@ -94,18 +94,6 @@ WSGI_APPLICATION = "task_manager.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# DATABASES = {
-#     'default': dj_database_url.config('DATABASES'),
-# }
-# print(dj_database_url.config('DATABASES'))
-
 
 DATABASES = {
     "default": {
