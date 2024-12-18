@@ -24,3 +24,9 @@ flake8:
 
 isort:
 	poetry run isort task_manager
+
+check:
+	poetry run ruff check task_manager
+
+format:
+	poetry run ruff format task_manager
