@@ -14,9 +14,13 @@ from task_manager.users.models import User
 class FilterTasks(FilterSet):
     status = ModelChoiceFilter(queryset=Statuses.objects.all(), label="Статус")
     labels = ModelChoiceFilter(queryset=Labels.objects.all(), label="Метка")
-    executor = ModelChoiceFilter(queryset=User.objects.all(), label="Исполнитель")
+    executor = ModelChoiceFilter(
+        queryset=User.objects.all(), label="Исполнитель"
+    )
     tasks_user = BooleanFilter(
-        label="Только свои задачи", widget=CheckboxInput, method="filter_tasks_user"
+        label="Только свои задачи",
+        widget=CheckboxInput,
+        method="filter_tasks_user",
     )
 
     def filter_tasks_user(self, queryset, name, value):
@@ -58,7 +62,9 @@ class MixinDeleteTask(DeleteView):
 
     def get(self, request, *args, **kwargs):
         if self.get_object().author != self.request.user:
-            messages.error(self.request, ("Задачу может удалить только ее автор"))
+            messages.error(
+                self.request, ("Задачу может удалить только ее автор")
+            )
             return redirect(self.redirect_for_error)
         return super().get(request, *args, **kwargs)
 
@@ -96,7 +102,8 @@ class MixinLoginRequired(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(
-                self.request, ("Вы не авторизованы! Пожалуйста, выполните вход.")
+                self.request,
+                ("Вы не авторизованы! Пожалуйста, выполните вход."),
             )
             return redirect("login")
         return super().dispatch(request, *args, **kwargs)

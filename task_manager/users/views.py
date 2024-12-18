@@ -4,7 +4,11 @@ from django.views.generic import CreateView, ListView
 
 from task_manager.users.forms import RegisterUserForm, UsersChangeForm
 from task_manager.users.models import User
-from task_manager.utils import MixinDeleteUser, MixinLoginRequired, MixinUpdateUser
+from task_manager.utils import (
+    MixinDeleteUser,
+    MixinLoginRequired,
+    MixinUpdateUser,
+)
 
 
 class UsersHome(ListView):

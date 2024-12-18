@@ -24,7 +24,9 @@ class TestStatuses(TestCase):
 
     def test_status_create(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse("statuses_create"), {"name": "status4"})
+        response = self.client.post(
+            reverse("statuses_create"), {"name": "status4"}
+        )
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("statuses"))
         response = self.client.get(reverse("statuses"))
@@ -34,7 +36,8 @@ class TestStatuses(TestCase):
         self.client.force_login(self.user)
         status = Statuses.objects.get(pk=1)
         response = self.client.post(
-            reverse("statuses_update", kwargs={"status_id": 1}), {"name": "status111"}
+            reverse("statuses_update", kwargs={"status_id": 1}),
+            {"name": "status111"},
         )
         self.assertEqual(response.status_code, 302)
         status.refresh_from_db()
@@ -42,7 +45,9 @@ class TestStatuses(TestCase):
 
     def test_status_delete(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse("statuses_delete", kwargs={"status_id": 3}))
+        response = self.client.post(
+            reverse("statuses_delete", kwargs={"status_id": 3})
+        )
         self.assertRedirects(response, reverse("statuses"))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Statuses.objects.count(), 2)

@@ -24,7 +24,9 @@ class TestUsers(TestCase):
     def test_users_create(self):
         response = self.client.get(reverse("users_create"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, template_name="actions/create_or_update.html")
+        self.assertTemplateUsed(
+            response, template_name="actions/create_or_update.html"
+        )
 
         response = self.client.post(
             reverse("users_create"),
@@ -51,14 +53,20 @@ class TestUsers(TestCase):
     def test_users_update(self):
         user = User.objects.get(id=2)
 
-        response = self.client.get(reverse("users_update", kwargs={"user_id": user.id}))
+        response = self.client.get(
+            reverse("users_update", kwargs={"user_id": user.id})
+        )
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("login"))
 
         self.client.force_login(user)
-        response = self.client.get(reverse("users_update", kwargs={"user_id": user.id}))
+        response = self.client.get(
+            reverse("users_update", kwargs={"user_id": user.id})
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, template_name="actions/create_or_update.html")
+        self.assertTemplateUsed(
+            response, template_name="actions/create_or_update.html"
+        )
         response = self.client.post(
             reverse("users_update", kwargs={"user_id": user.id}),
             {
@@ -75,12 +83,16 @@ class TestUsers(TestCase):
 
     def test_users_delete(self):
         user = User.objects.get(username="U2")
-        response = self.client.get(reverse("users_delete", kwargs={"user_id": user.id}))
+        response = self.client.get(
+            reverse("users_delete", kwargs={"user_id": user.id})
+        )
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("login"))
 
         self.client.force_login(user)
-        response = self.client.get(reverse("users_delete", kwargs={"user_id": user.id}))
+        response = self.client.get(
+            reverse("users_delete", kwargs={"user_id": user.id})
+        )
         self.assertEqual(response.status_code, 200)
 
         response = self.client.post(

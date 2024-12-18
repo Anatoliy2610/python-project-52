@@ -43,7 +43,9 @@ class StatusesUpdate(MixinLoginRequired, SuccessMessageMixin, UpdateView):
     }
 
 
-class StatusesDelete(MixinLoginRequired, SuccessMessageMixin, MixinDeleteStatus):
+class StatusesDelete(
+    MixinLoginRequired, SuccessMessageMixin, MixinDeleteStatus
+):
     model = Statuses
     template_name = "actions/delete.html"
     success_url = reverse_lazy("statuses")

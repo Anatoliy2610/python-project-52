@@ -16,5 +16,7 @@ class CreateUpdateStatusForm(forms.ModelForm):
     def clean_status_name(self):
         name = self.cleaned_data["name"]
         if Statuses.objects.filter(name=name):
-            raise forms.ValidationError("Task status с таким Имя уже существует.")
+            raise forms.ValidationError(
+                "Task status с таким Имя уже существует."
+            )
         return name

@@ -24,7 +24,9 @@ class TestLabels(TestCase):
 
     def test_label_create(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse("labels_create"), {"name": "label4"})
+        response = self.client.post(
+            reverse("labels_create"), {"name": "label4"}
+        )
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("labels"))
 
@@ -35,7 +37,8 @@ class TestLabels(TestCase):
         self.client.force_login(self.user)
         label = Labels.objects.get(id=1)
         response = self.client.post(
-            reverse("labels_update", kwargs={"label_id": 1}), {"name": "label111"}
+            reverse("labels_update", kwargs={"label_id": 1}),
+            {"name": "label111"},
         )
         self.assertEqual(response.status_code, 302)
         label.refresh_from_db()
@@ -44,7 +47,9 @@ class TestLabels(TestCase):
     def test_label_delete(self):
         self.client.force_login(self.user)
 
-        response = self.client.post(reverse("labels_delete", kwargs={"label_id": 3}))
+        response = self.client.post(
+            reverse("labels_delete", kwargs={"label_id": 3})
+        )
         self.assertRedirects(response, reverse("labels"))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Labels.objects.count(), 2)

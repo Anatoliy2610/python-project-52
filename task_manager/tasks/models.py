@@ -8,7 +8,9 @@ from task_manager.users.models import User
 
 class Tasks(models.Model):
     name = models.CharField(max_length=255, verbose_name="Имя")
-    time_create = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    time_create = models.DateTimeField(
+        auto_now_add=True, verbose_name="Дата создания"
+    )
     description = models.TextField(
         max_length=255, blank=True, null=True, verbose_name="Описание"
     )
@@ -20,7 +22,10 @@ class Tasks(models.Model):
         related_name="status",
     )
     author = models.ForeignKey(
-        get_user_model(), on_delete=models.PROTECT, null=True, related_name="author"
+        get_user_model(),
+        on_delete=models.PROTECT,
+        null=True,
+        related_name="author",
     )
     executor = models.ForeignKey(
         User,
