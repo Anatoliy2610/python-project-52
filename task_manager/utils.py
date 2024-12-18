@@ -12,15 +12,12 @@ from task_manager.users.models import User
 
 
 class FilterTasks(FilterSet):
-    status = ModelChoiceFilter(queryset=Statuses.objects.all(),
-                               label='Статус')
-    labels = ModelChoiceFilter(queryset=Labels.objects.all(),
-                               label='Метка')
-    executor = ModelChoiceFilter(queryset=User.objects.all(),
-                                 label='Исполнитель')
-    tasks_user = BooleanFilter(label='Только свои задачи',
-                               widget=CheckboxInput,
-                               method='filter_tasks_user')
+    status = ModelChoiceFilter(queryset=Statuses.objects.all(), label="Статус")
+    labels = ModelChoiceFilter(queryset=Labels.objects.all(), label="Метка")
+    executor = ModelChoiceFilter(queryset=User.objects.all(), label="Исполнитель")
+    tasks_user = BooleanFilter(
+        label="Только свои задачи", widget=CheckboxInput, method="filter_tasks_user"
+    )
 
     def filter_tasks_user(self, queryset, name, value):
         if value:
@@ -30,7 +27,7 @@ class FilterTasks(FilterSet):
 
     class Meta:
         model = Tasks
-        fields = ['status', 'executor', 'labels', 'tasks_user']
+        fields = ["status", "executor", "labels", "tasks_user"]
 
 
 class MixinDeleteStatus(DeleteView):
@@ -39,9 +36,7 @@ class MixinDeleteStatus(DeleteView):
 
     def post(self, request, *args, **kwargs):
         if self.get_object().status.exists():
-            messages.error(self.request,
-                           (self.messages_for_error)
-                           )
+            messages.error(self.request, (self.messages_for_error))
             return redirect(self.redirect_for_error)
         return super().post(request, *args, **kwargs)
 
@@ -52,9 +47,7 @@ class MixinDeleteLabel(DeleteView):
 
     def post(self, request, *args, **kwargs):
         if self.get_object().labels.exists():
-            messages.error(self.request,
-                           (self.messages_for_error)
-                           )
+            messages.error(self.request, (self.messages_for_error))
             return redirect(self.redirect_for_error)
         return super().post(request, *args, **kwargs)
 
@@ -65,9 +58,7 @@ class MixinDeleteTask(DeleteView):
 
     def get(self, request, *args, **kwargs):
         if self.get_object().author != self.request.user:
-            messages.error(self.request,
-                           ('Задачу может удалить только ее автор')
-                           )
+            messages.error(self.request, ("Задачу может удалить только ее автор"))
             return redirect(self.redirect_for_error)
         return super().get(request, *args, **kwargs)
 
@@ -79,9 +70,7 @@ class MixinDeleteUser(DeleteView):
 
     def get(self, request, *args, **kwargs):
         if self.get_object().username != self.request.user.username:
-            messages.error(self.request,
-                           (self.flash_get)
-                           )
+            messages.error(self.request, (self.flash_get))
             return redirect(self.redirect_for_error)
         return super().get(request, *args, **kwargs)
 
@@ -98,9 +87,7 @@ class MixinUpdateUser(UpdateView):
 
     def get(self, request, *args, **kwargs):
         if self.get_object().username != self.request.user.username:
-            messages.error(self.request,
-                           (self.messages_for_error)
-                           )
+            messages.error(self.request, (self.messages_for_error))
             return redirect(self.redirect_for_error)
         return super().get(request, *args, **kwargs)
 
@@ -108,7 +95,8 @@ class MixinUpdateUser(UpdateView):
 class MixinLoginRequired(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(self.request,
-                           ('Вы не авторизованы! Пожалуйста, выполните вход.'))
-            return redirect('login')
+            messages.error(
+                self.request, ("Вы не авторизованы! Пожалуйста, выполните вход.")
+            )
+            return redirect("login")
         return super().dispatch(request, *args, **kwargs)

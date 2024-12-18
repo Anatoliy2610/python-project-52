@@ -8,23 +8,21 @@ from task_manager.users.forms import LoginUserForm
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
 
 
 class LoginUser(SuccessMessageMixin, LoginView):
     form_class = LoginUserForm
-    template_name = 'login.html'
-    success_message = 'Вы залогинены'
-    extra_context = {
-        'title': 'Вход',
-        'button_text': 'Войти'}
+    template_name = "login.html"
+    success_message = "Вы залогинены"
+    extra_context = {"title": "Вход", "button_text": "Войти"}
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy("home")
 
 
 class LogoutUser(LogoutView):
-    next_page = reverse_lazy('home')
+    next_page = reverse_lazy("home")
 
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, "Вы разлогинены")
