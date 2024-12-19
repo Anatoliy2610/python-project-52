@@ -30,3 +30,9 @@ check:
 
 format:
 	poetry run ruff format task_manager
+
+compile:
+	django-admin compilemessages
+
+local:
+	django-admin makemessages -l ru

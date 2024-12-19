@@ -1,5 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext
 from django.views.generic import CreateView, ListView
 
 from task_manager.users.forms import RegisterUserForm, UsersChangeForm
@@ -24,7 +25,7 @@ class UsersCreate(SuccessMessageMixin, CreateView):
     success_message = "Пользователь успешно зарегистрирован"
     success_url = reverse_lazy("login")
     extra_context = {
-        "title": "Регистрация",
+        "title": gettext("Registration"),
         "button_text": "Зарегистрировать",
     }
 

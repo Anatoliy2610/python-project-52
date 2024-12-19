@@ -1,5 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext
 from django.views.generic import CreateView, ListView, UpdateView
 
 from task_manager.utils import MixinDeleteLabel, MixinLoginRequired
@@ -12,7 +13,7 @@ class LabelsHome(MixinLoginRequired, SuccessMessageMixin, ListView):
     model = Labels
     template_name = "labels/labels.html"
     context_object_name = "labels"
-    extra_context = {"title": "Метки"}
+    extra_context = {"title": gettext("Labels")}
 
     def get_queryset(self):
         return Labels.objects.all()

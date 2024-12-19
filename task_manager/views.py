@@ -1,21 +1,22 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.translation import gettext, gettext_lazy
+from django.views.generic import TemplateView
 
-from task_manager.users.forms import LoginUserForm
 
-
-def index(request):
-    return render(request, "index.html")
+class Index(TemplateView):
+    template_name = "index.html"
 
 
 class LoginUser(SuccessMessageMixin, LoginView):
-    form_class = LoginUserForm
     template_name = "login.html"
-    success_message = "Вы залогинены"
-    extra_context = {"title": "Вход", "button_text": "Войти"}
+    success_message = gettext_lazy("You are logged in")
+    extra_context = {
+        "title": gettext("Entrance"),
+        "button_text": gettext("Enter"),
+    }
 
     def get_success_url(self):
         return reverse_lazy("home")
