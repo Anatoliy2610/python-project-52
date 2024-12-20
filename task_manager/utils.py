@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
@@ -58,15 +59,16 @@ class MixinDeleteUser:
         return super().post(request, *args, **kwargs)
 
 
-class MixinUpdateUser:
+class MixinUpdateUser(UserPassesTestMixin):
     messages_for_error = None
     redirect_for_error = None
 
-    def get(self, request, *args, **kwargs):
-        if self.get_object().username != self.request.user.username:
+    def test_func(self):
+        user = self.get_object()
+        if user != self.request.user:
             messages.error(self.request, (self.messages_for_error))
             return redirect(self.redirect_for_error)
-        return super().get(request, *args, **kwargs)
+        return user == self.request.user
 
 
 class MixinLoginRequired:
