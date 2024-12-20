@@ -1,20 +1,24 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext as _
+
+HELP_TEXT_1 = "Required field. No more than 150 characters. "
+HELP_TEXT_2 = "Only letters, numbers and symbols @/./+/-/_."
 
 
 class RegisterUserForm(UserCreationForm):
-    first_name = forms.CharField(label="Имя")
-    last_name = forms.CharField(label="Фамилия")
+    first_name = forms.CharField(label=_("Name"))
+    last_name = forms.CharField(label=_("Family"))
     username = forms.CharField(
-        label="Имя пользователя",
-        help_text="""Обязательное поле.
-                               Не более 150 символов.
-                               Только буквы, цифры и символы @/./+/-/_.""",
+        label=_("Username"),
+        help_text=_(HELP_TEXT_1 + HELP_TEXT_2),
     )
-    password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput())
+    password1 = forms.CharField(
+        label=_("Password"), widget=forms.PasswordInput()
+    )
     password2 = forms.CharField(
-        label="Подтверждение пароля", widget=forms.PasswordInput()
+        label=_("Password confirmation"), widget=forms.PasswordInput()
     )
 
     class Meta:
@@ -30,7 +34,7 @@ class RegisterUserForm(UserCreationForm):
     def clean_username(self):
         username = self.cleaned_data["username"]
         if get_user_model().objects.filter(username=username).exists():
-            raise forms.ValidationError("Имя пользователя уже существует")
+            raise forms.ValidationError(_("The username already exists"))
         return username
 
 
@@ -43,5 +47,5 @@ class UsersChangeForm(RegisterUserForm):
         username = self.cleaned_data["username"]
         if get_user_model().objects.filter(username=username).exists():
             if username != self.instance.username:
-                raise forms.ValidationError("Имя пользователя уже существует")
+                raise forms.ValidationError(_("The username already exists"))
         return username

@@ -1,7 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.utils.translation import gettext
-from django.views.generic import CreateView, ListView
+from django.utils.translation import gettext as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from task_manager.users.forms import RegisterUserForm, UsersChangeForm
 from task_manager.users.models import User
@@ -22,39 +23,51 @@ class UsersCreate(SuccessMessageMixin, CreateView):
     form_class = RegisterUserForm
     model = User
     template_name = "actions/create_or_update.html"
-    success_message = "Пользователь успешно зарегистрирован"
+    success_message = _("The user has been successfully registered")
     success_url = reverse_lazy("login")
     extra_context = {
-        "title": gettext("Registration"),
-        "button_text": "Зарегистрировать",
+        "title": _("Registration"),
+        "button_text": _("Register"),
     }
 
 
-class UsersUpdate(MixinLoginRequired, SuccessMessageMixin, MixinUpdateUser):
+class UsersUpdate(
+    MixinLoginRequired,
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    MixinUpdateUser,
+    UpdateView,
+):
     form_class = UsersChangeForm
     model = User
     template_name = "actions/create_or_update.html"
     success_url = reverse_lazy("users")
     pk_url_kwarg = "user_id"
-    success_message = "Пользователь успешно изменен"
+    success_message = _("The user has been successfully changed")
     extra_context = {
-        "title": "Изменение пользователя",
-        "button_text": "Изменить",
+        "title": _("Changing the user"),
+        "button_text": _("To change"),
     }
-    messages_for_error = "У вас нет прав для изменения другого пользователя."
+    messages_for_error = _("You don't have the rights to change another user.")
     redirect_for_error = "users"
 
 
-class UserDelete(MixinLoginRequired, SuccessMessageMixin, MixinDeleteUser):
+class UserDelete(
+    MixinLoginRequired,
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    MixinDeleteUser,
+    DeleteView,
+):
     model = User
     template_name = "actions/delete.html"
     success_url = reverse_lazy("users")
     pk_url_kwarg = "user_id"
-    success_message = "Пользователь успешно удален"
+    success_message = _("The user has been successfully deleted")
     extra_context = {
-        "title": "Удаление пользователя",
-        "button_text": "Удалить",
+        "title": _("Deleting a user"),
+        "button_text": _("Remove"),
     }
-    flash_get = "У вас нет прав для изменения другого пользователя."
-    flash_post = "Невозможно удалить пользователя, потому что он используется"
+    flash_get = _("You don't have the rights to change another user.")
+    flash_post = _("It is not possible to delete a user because it is in use")
     redirect_for_error = "users"

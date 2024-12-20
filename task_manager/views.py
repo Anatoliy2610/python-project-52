@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.utils.translation import gettext, gettext_lazy
+from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
 
@@ -12,10 +12,10 @@ class Index(TemplateView):
 
 class LoginUser(SuccessMessageMixin, LoginView):
     template_name = "login.html"
-    success_message = gettext_lazy("You are logged in")
+    success_message = _("You are logged in")
     extra_context = {
-        "title": gettext("Entrance"),
-        "button_text": gettext("Enter"),
+        "title": _("Login"),
+        "button_text": _("Enter"),
     }
 
     def get_success_url(self):
@@ -26,5 +26,5 @@ class LogoutUser(LogoutView):
     next_page = reverse_lazy("home")
 
     def dispatch(self, request, *args, **kwargs):
-        messages.info(request, "Вы разлогинены")
+        messages.info(request, _("You are logged out"))
         return super().dispatch(request, *args, **kwargs)

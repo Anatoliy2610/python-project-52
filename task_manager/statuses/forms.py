@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext as _
 
 from .models import Statuses
 
@@ -9,7 +10,7 @@ class CreateUpdateStatusForm(forms.ModelForm):
         fields = ["name"]
         widgets = {
             "name": forms.TextInput(
-                attrs={"placeholder": "Имя", "class": "form-control"}
+                attrs={"placeholder": _("Name"), "class": "form-control"}
             )
         }
 
@@ -17,6 +18,6 @@ class CreateUpdateStatusForm(forms.ModelForm):
         name = self.cleaned_data["name"]
         if Statuses.objects.filter(name=name):
             raise forms.ValidationError(
-                "Task status с таким Имя уже существует."
+                _("A task status with this name already exists.")
             )
         return name
