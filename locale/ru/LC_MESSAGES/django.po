@@ -278,7 +278,7 @@ msgstr "Зарегистрировать"
 
 #: task_manager/users/views.py:46
 msgid "The user has been successfully changed"
-msgstr "Пользователь был успешно изменен"
+msgstr "Пользователь успешно изменен"
 
 #: task_manager/users/views.py:48
 msgid "Changing the user"
