@@ -290,7 +290,7 @@ msgstr "У вас нет прав для изменения другого по�
 
 #: task_manager/users/views.py:66
 msgid "The user has been successfully deleted"
-msgstr "Пользователь был успешно удален"
+msgstr "Пользователь успешно удален"
 
 #: task_manager/users/views.py:68
 msgid "Deleting a user"
