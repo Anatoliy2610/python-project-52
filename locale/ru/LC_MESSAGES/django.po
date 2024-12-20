@@ -138,7 +138,7 @@ msgstr "Показать"
 
 #: task_manager/tasks/views.py:48
 msgid "The task has been successfully created"
-msgstr "Задача была успешно создана"
+msgstr "Задача успешно создана"
 
 #: task_manager/tasks/views.py:50 task_manager/templates/tasks/tasks.html:11
 msgid "Create a task"
@@ -154,7 +154,7 @@ msgstr "Просмотр задачи"
 
 #: task_manager/tasks/views.py:81
 msgid "The task has been successfully changed"
-msgstr "Задача была успешно изменена"
+msgstr "Задача успешно изменена"
 
 #: task_manager/tasks/views.py:83
 msgid "Changing the task"
@@ -166,7 +166,7 @@ msgstr "Изменить"
 
 #: task_manager/tasks/views.py:99
 msgid "The task was successfully deleted"
-msgstr "Задача была успешно удалена"
+msgstr "Задача успешно удалена"
 
 #: task_manager/tasks/views.py:100
 msgid "Deleting a task"
