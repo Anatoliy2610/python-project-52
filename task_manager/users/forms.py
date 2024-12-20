@@ -3,8 +3,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
 
-HELP_TEXT_1 = "Required field. No more than 150 characters. "
-HELP_TEXT_2 = "Only letters, numbers and symbols @/./+/-/_."
+HELP_TEXT_1 = _("Required field. No more than 150 characters. ")
+HELP_TEXT_2 = _("Only letters, numbers and symbols @/./+/-/_.")
 
 
 class RegisterUserForm(UserCreationForm):
@@ -12,7 +12,7 @@ class RegisterUserForm(UserCreationForm):
     last_name = forms.CharField(label=_("Family"))
     username = forms.CharField(
         label=_("Username"),
-        help_text=_(HELP_TEXT_1 + HELP_TEXT_2),
+        help_text=HELP_TEXT_1 + HELP_TEXT_2,
     )
     password1 = forms.CharField(
         label=_("Password"), widget=forms.PasswordInput()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-20 13:53+0300\n"
+"POT-Creation-Date: 2024-12-20 14:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,6 +244,14 @@ msgstr "Имя пользователя"
 msgid "Full name"
 msgstr "Полное имя"
 
+#: task_manager/users/forms.py:6
+msgid "Required field. No more than 150 characters. "
+msgstr "Обязательное поле. Не более 150 символов. "
+
+#: task_manager/users/forms.py:7
+msgid "Only letters, numbers and symbols @/./+/-/_."
+msgstr "Только буквы, цифры и символы @/./+/-/_."
+
 #: task_manager/users/forms.py:12
 msgid "Family"
 msgstr "Фамилия"
@@ -266,7 +274,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/users/views.py:30
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/users/views.py:46
 msgid "The user has been successfully changed"
