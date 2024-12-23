@@ -1,16 +1,15 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.users.forms import RegisterUserForm, UsersChangeForm
-from task_manager.users.models import User
-from task_manager.utils import (
+from task_manager.mixin import (
     MixinDeleteUser,
     MixinLoginRequired,
     MixinUpdateUser,
 )
+from task_manager.users.forms import RegisterUserForm, UsersChangeForm
+from task_manager.users.models import User
 
 
 class UsersHome(ListView):
@@ -33,7 +32,6 @@ class UsersCreate(SuccessMessageMixin, CreateView):
 
 class UsersUpdate(
     MixinLoginRequired,
-    LoginRequiredMixin,
     SuccessMessageMixin,
     MixinUpdateUser,
     UpdateView,
@@ -54,7 +52,6 @@ class UsersUpdate(
 
 class UserDelete(
     MixinLoginRequired,
-    LoginRequiredMixin,
     SuccessMessageMixin,
     MixinDeleteUser,
     DeleteView,

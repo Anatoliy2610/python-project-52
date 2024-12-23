@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
@@ -71,7 +71,7 @@ class MixinUpdateUser(UserPassesTestMixin):
         return user == self.request.user
 
 
-class MixinLoginRequired:
+class MixinLoginRequired(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(

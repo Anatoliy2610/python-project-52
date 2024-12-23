@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -11,15 +10,14 @@ from django.views.generic import (
 )
 from django_filters.views import FilterView
 
+from task_manager.mixin import MixinDeleteTask, MixinLoginRequired
 from task_manager.tasks.filters import FilterTasks
-from task_manager.utils import MixinDeleteTask, MixinLoginRequired
 
 from .forms import CreateUpdateTaskForm
 from .models import Tasks
 
 
 class TaskHome(
-    LoginRequiredMixin,
     MixinLoginRequired,
     SuccessMessageMixin,
     FilterView,
@@ -38,9 +36,7 @@ class TaskHome(
         return Tasks.objects.all()
 
 
-class TaskCreate(
-    LoginRequiredMixin, MixinLoginRequired, SuccessMessageMixin, CreateView
-):
+class TaskCreate(MixinLoginRequired, SuccessMessageMixin, CreateView):
     form_class = CreateUpdateTaskForm
     model = Tasks
     template_name = "actions/create_or_update.html"
@@ -52,14 +48,11 @@ class TaskCreate(
     }
 
     def form_valid(self, form):
-        w = form.save(commit=False)
-        w.author = self.request.user
+        form.instance.creator = self.request.user
         return super().form_valid(form)
 
 
-class Task(
-    LoginRequiredMixin, MixinLoginRequired, SuccessMessageMixin, DetailView
-):
+class TaskShow(MixinLoginRequired, SuccessMessageMixin, DetailView):
     model = Tasks
     template_name = "tasks/task.html"
     fields = ["name", "description", "status", "executor", "labels"]
@@ -70,9 +63,7 @@ class Task(
     }
 
 
-class TaskUpdate(
-    LoginRequiredMixin, MixinLoginRequired, SuccessMessageMixin, UpdateView
-):
+class TaskUpdate(MixinLoginRequired, SuccessMessageMixin, UpdateView):
     form_class = CreateUpdateTaskForm
     model = Tasks
     template_name = "actions/create_or_update.html"
@@ -86,7 +77,6 @@ class TaskUpdate(
 
 
 class TaskDelete(
-    LoginRequiredMixin,
     MixinLoginRequired,
     SuccessMessageMixin,
     MixinDeleteTask,
