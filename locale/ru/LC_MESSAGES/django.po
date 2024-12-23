@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-23 21:42+0300\n"
+"POT-Creation-Date: 2024-12-23 22:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
 #: task_manager/labels/forms.py:13 task_manager/labels/models.py:6
 #: task_manager/statuses/forms.py:13 task_manager/statuses/models.py:6
 #: task_manager/tasks/models.py:11 task_manager/templates/labels/labels.html:14
@@ -26,10 +27,6 @@ msgstr ""
 #: task_manager/templates/tasks/tasks.html:28 task_manager/users/forms.py:11
 msgid "Name"
 msgstr "Имя"
-
-#: task_manager/labels/forms.py:21
-msgid "A Label with this Name already exists."
-msgstr "Label с таким Имя уже существует."
 
 #: task_manager/labels/models.py:8 task_manager/statuses/models.py:8
 #: task_manager/tasks/models.py:13 task_manager/templates/labels/labels.html:15
@@ -98,10 +95,6 @@ msgstr "Задачу может удалить только ее автор"
 msgid "You are not logged in! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/statuses/forms.py:21
-msgid "A task status with this name already exists."
-msgstr "Task status с таким Имя уже существует."
-
 #: task_manager/statuses/views.py:16 task_manager/templates/base.html:26
 msgid "Statuses"
 msgstr "Статусы"
@@ -163,10 +156,6 @@ msgstr "Исполнитель"
 #: task_manager/tasks/filters.py:20
 msgid "Only your own tasks"
 msgstr "Только свои задачи"
-
-#: task_manager/tasks/forms.py:22
-msgid "A Task with this Name already exists."
-msgstr "Task с таким Имя уже существует."
 
 #: task_manager/tasks/models.py:19
 msgid "Description"
@@ -340,3 +329,12 @@ msgstr "Войти"
 #: task_manager/views.py:29
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "A Label with this Name already exists."
+#~ msgstr "Label с таким Имя уже существует."
+
+#~ msgid "A task status with this name already exists."
+#~ msgstr "Task status с таким Имя уже существует."
+
+#~ msgid "A Task with this Name already exists."
+#~ msgstr "Task с таким Имя уже существует."

@@ -13,11 +13,3 @@ class CreateUpdateStatusForm(forms.ModelForm):
                 attrs={"placeholder": _("Name"), "class": "form-control"}
             )
         }
-
-    def clean_status_name(self):
-        name = self.cleaned_data["name"]
-        if Statuses.objects.filter(name=name):
-            raise forms.ValidationError(
-                _("A task status with this name already exists.")
-            )
-        return name

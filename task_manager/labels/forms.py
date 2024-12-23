@@ -13,11 +13,3 @@ class CreateUpdateLabelForm(forms.ModelForm):
                 attrs={"placeholder": _("Name"), "class": "form-control"}
             )
         }
-
-    def clean_label_name(self):
-        name = self.cleaned_data["name"]
-        if Labels.objects.filter(name=name):
-            raise forms.ValidationError(
-                _("A Label with this Name already exists.")
-            )
-        return name
